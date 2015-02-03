@@ -1,0 +1,50 @@
+<html>
+<script>
+function checkEntry() {
+if (document.getElementById("txt").value==""){
+alert("Please enter your report");
+return false;
+}
+else {
+return true;
+}
+}
+</script>
+<body>
+<h1>Report</h1>
+<form method="POST" onsubmit="return checkEntry()">
+<textarea id="txt" name="r" cols=100 rows=20></textarea>
+<select name="m">
+  {% for i in range(12) %}
+  {% if i+1 == month|int %}
+  <option value="{{i+1}}" selected="selected">{{i+1}}</option>
+  {% else %}
+  <option value="{{i+1}}">{{i+1}}</option>
+  {% endif %}
+  {% endfor %}
+</select>
+
+<select name="d">
+  {% for i in range(31) %}
+  {% if i+1 == day|int %}
+  <option value="{{i+1}}" selected="selected">{{i+1}}</option>
+  {% else %}
+  <option value="{{i+1}}">{{i+1}}</option>
+  {% endif %}
+  {% endfor %}  
+</select>
+
+<select name="y">
+  {% for i in range(2000, 2100) %}
+  {% if i+1 == year|int %}
+  <option value="{{i+1}}" selected="selected">{{i+1}}</option>
+  {% else %}
+  <option value="{{i+1}}">{{i+1}}</option>
+  {% endif %}
+  {% endfor %}  
+</select>
+
+<input type="submit"></submit>
+</form>
+</body>
+</html>

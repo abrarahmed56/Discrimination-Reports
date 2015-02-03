@@ -1,0 +1,123 @@
+<html>
+<title>Discrimination at Stuyvesant</title>
+<body style="margin-left:15px">
+<h1>Discrimination Reports</h1>
+{% if month|int == 1 %}
+<form action="/12/{{year|int+1999}}" method="POST">
+{% elif month|int > 10 %}
+<form action="/{{(month|int-1)|string}}/{{year|int+2000}}" method="POST">
+{% else %}
+<form action="/{{'0'+(month|int-1)|string}}/{{year|int+2000}}" method="POST">
+{% endif %}
+<input type="submit" style="vertical-align:left" value="Previous"></submit>
+</form>
+{% if month|int == 12 %}
+<form action="/01/{{year|int+2001}}" method="POST">
+{% elif month|int >= 9 %}
+<form action="/{{(month|int+1)|string}}/{{year|int+2000}}" method="POST">
+{% else %}
+<form action="/{{'0'+(month|int+1)|string}}/{{year|int+2000}}" method="POST">
+{% endif %}
+<input type="submit" style="vertical-align:right" value="Next"></submit>
+</form>
+<table border='1'>
+  <tr>
+    {% for day in range(7-firstWeek|length) %}
+    <td style="width:170px">
+    </td>
+    {% endfor %}
+
+    {% for day in firstWeek %}
+    <td style="width:170px; height:100px; vertical-align:top">
+      {{day}}
+      <br>
+      {% set date = month|string + "/" + day + "/" + year|string %}
+      {% for rep in reports[date] %}
+      <ul>
+	<li>{{rep}}</li>
+      </ul>
+      {% endfor %}
+    </td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+    {% for day in secondWeek %}
+    <td style="height:100px; vertical-align:top">
+      {{day}}
+      <br>
+      {% set date = month|string + "/" + day + "/" + year|string %}
+      {% for rep in reports[date] %}
+      <ul>
+	<li>{{rep}}</li>
+      </ul>
+      {% endfor %}
+    </td>
+    {% endfor %}
+  </tr>
+  <tr>
+    {% for day in thirdWeek %}
+    <td style="height:100px; vertical-align:top">
+      {{day}}
+      <br>
+      {% set date = month|string + "/" + day + "/" + year|string %}
+      {% for rep in reports[date] %}
+      <ul>
+	<li>{{rep}}</li>
+      </ul>
+      {% endfor %}
+    </td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+    {% for day in fourthWeek %}
+    <td style="height:100px; vertical-align:top">
+      {{day}}
+      <br>
+      {% set date = month|string + "/" + day + "/" + year|string %}
+      {% for rep in reports[date] %}
+      <ul>
+	<li>{{rep}}</li>
+      </ul>
+      {% endfor %}
+    </td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+    {% for day in fifthWeek %}
+    <td style="height:100px; vertical-align:top">
+      {{day}}
+      <br>
+      {% set date = month|string + "/" + day + "/" + year|string %}
+      {% for rep in reports[date] %}
+      <ul>
+	<li>{{rep}}</li>
+      </ul>
+      {% endfor %}
+    </td>
+    {% endfor %}
+  </tr>
+
+  <tr>
+    {% for day in sixthWeek %}
+    <td style="height:100px; vertical-align:top">
+      {{day}}
+      <br>
+      {% set date = month|string + "/" + day + "/" + year|string %}
+      {% for rep in reports[date] %}
+      <ul>
+	<li>{{rep}}</li>
+      </ul>
+      {% endfor %}
+    </td>
+    {% endfor %}
+  </tr>
+
+</table>
+<form action="/report">
+  <input type="submit" value="Report Incident"></submit>
+</form>
+</body>
+</html>
